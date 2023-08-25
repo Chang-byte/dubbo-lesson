@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--    命名唯一即可，被注册中心管理-->
+    <dubbo:application name="dubbo-02-provider"/>
+
+    <!--    网络通信调用，设置协议-->
+<!--    <dubbo:protocol name="dubbo" port="20880"/>-->
+    <dubbo:protocol name="dubbo" port="-1"/>
+
+    <!--    在Provider中创建对象-->
+    <bean id="userService" class="com.chang.service.UserServiceImpl"/>
+
+    <!--    Interface:能真正被远程调用的接口； ref：对应的真正的运行对象-->
+    <dubbo:service interface="com.chang.service.UserService" ref="userService"/>
+</beans>
